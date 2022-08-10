@@ -91,75 +91,75 @@ task sourceJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
 }
 
-project.afterEvaluate {
-    publishing {
-        publications {
-            maven(MavenPublication) {
-                artifact bundleReleaseAar
-                artifactId project.artifactId
+//project.afterEvaluate {
+//    publishing {
+//        publications {
+//            maven(MavenPublication) {
+//                artifact bundleReleaseAar
+//                artifactId project.artifactId
+//
+//                artifact sourceJar
+//
+//                pom {
+//                    name = project.artifactId
+//                    description = 'Barcode scanner library for Android, based on the ZXing decoder'
+//                    url = 'https://github.com/journeyapps/zxing-android-embedded'
+//
+//                    licenses {
+//                        license {
+//                            name = 'The Apache License, Version 2.0'
+//                            url = 'https://github.com/journeyapps/zxing-android-embedded/blob/master/COPYING'
+//                        }
+//                    }
+//
+//                    developers {
+//                        developer {
+//                            id = ''
+//                            name = 'Ralf Kistner'
+//                            email = 'ralf@journeyapps.com'
+//                            organization = 'Journey Mobile, Inc'
+//                            organizationUrl = 'https://journeyapps.com'
+//                        }
+//                    }
+//                    scm {
+//                        connection = 'scm:git:github.com/journeyapps/zxing-android-embedded.git'
+//                        developerConnection = 'scm:git:ssh://github.com/journeyapps/zxing-android-embedded.git'
+//                        url = 'https://github.com/journeyapps/zxing-android-embedded'
+//                    }
+//                }
+//
+//
+//                pom.withXml {
+//                    // HACK to add dependencies to POM.
+//                    // When maven-publish can do this automatically for Android projects,
+//                    // remove this section.
+//                    def deps = asNode().appendNode('dependencies')
+//
+//                    project.configurations.api.allDependencies.each { dep ->
+//                        def node = deps.appendNode('dependency')
+//                        node.appendNode('groupId', dep.group)
+//                        node.appendNode('artifactId', dep.name)
+//                        node.appendNode('version', dep.version)
+//                        node.appendNode('scope', 'api')
+//                    }
+//
+//                }
+//            }
+//        }
+//
+//        repositories {
+//            maven {
+//                name = "sonatype"
+//                url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+//                credentials {
+//                    username ossrhUsername
+//                    password ossrhPassword
+//                }
+//            }
+//        }
+//    }
+//}
 
-                artifact sourceJar
-                
-                pom {
-                    name = project.artifactId
-                    description = 'Barcode scanner library for Android, based on the ZXing decoder'
-                    url = 'https://github.com/journeyapps/zxing-android-embedded'
-
-                    licenses {
-                        license {
-                            name = 'The Apache License, Version 2.0'
-                            url = 'https://github.com/journeyapps/zxing-android-embedded/blob/master/COPYING'
-                        }
-                    }
-
-                    developers {
-                        developer {
-                            id = ''
-                            name = 'Ralf Kistner'
-                            email = 'ralf@journeyapps.com'
-                            organization = 'Journey Mobile, Inc'
-                            organizationUrl = 'https://journeyapps.com'
-                        }
-                    }
-                    scm {
-                        connection = 'scm:git:github.com/journeyapps/zxing-android-embedded.git'
-                        developerConnection = 'scm:git:ssh://github.com/journeyapps/zxing-android-embedded.git'
-                        url = 'https://github.com/journeyapps/zxing-android-embedded'
-                    }
-                }
-
-
-                pom.withXml {
-                    // HACK to add dependencies to POM.
-                    // When maven-publish can do this automatically for Android projects,
-                    // remove this section.
-                    def deps = asNode().appendNode('dependencies')
-
-                    project.configurations.api.allDependencies.each { dep ->
-                        def node = deps.appendNode('dependency')
-                        node.appendNode('groupId', dep.group)
-                        node.appendNode('artifactId', dep.name)
-                        node.appendNode('version', dep.version)
-                        node.appendNode('scope', 'api')
-                    }
-
-                }
-            }
-        }
-
-        repositories {
-            maven {
-                name = "sonatype"
-                url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-                credentials {
-                    username ossrhUsername
-                    password ossrhPassword
-                }
-            }
-        }
-    }
-}
-
-signing {
-    sign publishing.publications
-}
+//signing {
+//    sign publishing.publications
+//}

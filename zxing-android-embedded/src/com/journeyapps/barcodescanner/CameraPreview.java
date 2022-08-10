@@ -58,6 +58,8 @@ import java.util.List;
  * 7. set surface and start preview
  */
 public class CameraPreview extends ViewGroup {
+    private boolean autoRotation=true;
+
     public interface StateListener {
         /**
          * Preview and frame sizes are determined.
@@ -277,6 +279,7 @@ public class CameraPreview extends ViewGroup {
         }
 
         this.useTextureView = styledAttributes.getBoolean(R.styleable.zxing_camera_preview_zxing_use_texture_view, true);
+        this.autoRotation = styledAttributes.getBoolean(R.styleable.zxing_camera_preview_zxing_auto_rotation, true);
 
         // See zxing_attrs.xml for the enum values
         int scalingStrategyNumber = styledAttributes.getInteger(R.styleable.zxing_camera_preview_zxing_preview_scaling_strategy, -1);
@@ -630,7 +633,10 @@ public class CameraPreview extends ViewGroup {
 
         // To trigger surfaceSized again
         requestLayout();
-        rotationListener.listen(getContext(), rotationCallback);
+        // 根据需要确定是否需要监听屏幕旋转（会收集传感器信息）
+        if(autoRotation) {
+            rotationListener.listen(getContext(), rotationCallback);
+        }
     }
 
     /**
