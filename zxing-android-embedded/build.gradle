@@ -91,6 +91,39 @@ task sourceJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
 }
 
+//方便发布至maven仓库，如jitpack
+//java库用这种
+//publishing {
+//    publications {
+//        // 这个mavenJava可以随便填，只是一个任务名字而已
+//        // MavenPublication必须有，这个是调用的任务类
+//        maven(MavenPublication) {
+//            groupId = 'org.gradle.sample'
+//            artifactId = 'library'
+//            version = '1.1'
+//
+//            from components.release
+//        }
+//    }
+//}
+
+//android库用这种
+afterEvaluate {
+    publishing {
+        publications {
+            // 这个mavenJava可以随便填，只是一个任务名字而已
+            // MavenPublication必须有，这个是调用的任务类
+            release(MavenPublication) {
+                from components.release
+                // 这里头是artifacts的配置信息，不填会采用默认的
+                //groupId = 'com.github.xxx'
+                //artifactId = 'xxx'
+                //version = '1.0.0'
+            }
+        }
+    }
+}
+
 //project.afterEvaluate {
 //    publishing {
 //        publications {
